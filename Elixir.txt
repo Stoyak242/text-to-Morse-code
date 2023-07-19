@@ -1,0 +1,54 @@
+defmodule MorseCode do
+  @moduledoc """
+  Module for converting text to Morse code.
+  """
+
+  @doc """
+  Converts a given text to Morse code.
+
+  ## Examples
+
+      iex> MorseCode.to_morse("HELLO")
+      "... .-.. .-.. ---"
+
+  """
+  def to_morse(text) when is_binary(text) do
+    text
+    |> String.upcase()
+    |> String.codepoints()
+    |> Enum.map(&morse_code/1)
+    |> Enum.join(" ")
+  end
+
+  defp morse_code(char) do
+    case char do
+      "A" -> ".-"
+      "B" -> "-..."
+      "C" -> "-.-."
+      "D" -> "-.."
+      "E" -> "."
+      "F" -> "..-."
+      "G" -> "--."
+      "H" -> "...."
+      "I" -> ".."
+      "J" -> ".---"
+      "K" -> "-.-"
+      "L" -> ".-.."
+      "M" -> "--"
+      "N" -> "-."
+      "O" -> "---"
+      "P" -> ".--."
+      "Q" -> "--.-"
+      "R" -> ".-."
+      "S" -> "..."
+      "T" -> "-"
+      "U" -> "..-"
+      "V" -> "...-"
+      "W" -> ".--"
+      "X" -> "-..-"
+      "Y" -> "-.--"
+      "Z" -> "--.."
+      _ -> char
+    end
+  end
+end
